@@ -1,0 +1,41 @@
+<h1>Dynosaur Plugin Config: <%= @plugin_config.name %></h1>
+
+<% if @errors %>
+	<div class="errors"><strong>ERROR:</strong>
+		<% for field, messages in @errors.messages %>
+			<p><%= field %> <%= messages[0] %>
+		<% end %>
+	</div>
+<% end %>
+
+<form action="/config/plugin" method="POST">
+<%= token_tag form_authenticity_token %>
+<label for="name">Plugin Name</label><%= text_field(:plugin_config, :name) %>
+<label for="plugin_type">Plugin Type</label>
+<%= select_tag("plugin_config[plugin_type]", options_for_select(@plugin_types, @plugin_config.plugin_type)) %>
+
+<ul>
+	<%  @plugin_config.plugin_config_items.all.each_with_index do |item, index| %>
+		<% id = "param_#{index}" %>
+		<li>
+			<label for="<%= id %>_name">Param <%= index %></label>
+			<input type="text" name="<%= id %>_name" value="<%= item.name %>"/>
+			<input type="text" name="<%= id %>_value" value="<%= item.value %>"/>
+		</li>
+	<% end %>
+
+	<% id = "param_#{@plugin_config.plugin_config_items.length}" %>
+	<li>
+		<label for="<%= id %>_name">Param <%= @plugin_config.plugin_config_items.length %></label>
+		<input type="text" name="<%= id %>_name"/>
+		<input type="text" name="<%= id %>_value" />
+	</li>
+</ul>
+
+<%= hidden_field(:config, :id) %>
+
+<br>
+<br>
+<input type="submit">
+</form>
+

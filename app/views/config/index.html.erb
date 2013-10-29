@@ -1,0 +1,33 @@
+<h1>Dynosaur Config</h1>
+
+<% if @errors %>
+	<div class="errors"><strong>ERROR:</strong>
+		<% for field, messages in @errors.messages %>
+			<p><%= field %> <%= messages[0] %>
+		<% end %>
+	</div>
+<% end %>
+
+<form action="/config/submit" method="POST">
+<%= token_tag form_authenticity_token %>
+<label for="heroku_app_name">Heroku App Name</label><%= text_field(:config, :heroku_app_name) %>
+<label for="heroku_api_key">Heroku Api Key</label><%= text_field(:config, :heroku_api_key) %>
+<label for="min_web_dynos">Min. Web Dynos</label><%= text_field(:config, :min_web_dynos) %>
+<label for="max_web_dynos">Max. Web Dynos</label><%= text_field(:config, :max_web_dynos) %>
+<label for="interval">Interval</label><%= text_field(:config, :interval) %>
+<label for="blackout">Blackout</label><%= text_field(:config, :blackout) %>
+<label for="dry_run">dry_run</label><%= check_box(:config, :dry_run) %>
+
+<%= hidden_field(:config, :id) %>
+
+<br>
+<br>
+<input type="submit">
+</form>
+
+<ul>
+	<% for plugin in @config.plugin_configs %>
+		<li><a href="/config/plugin/<%= plugin.name %>"><%= plugin.name %></a></li>
+	<% end %>
+	<li><a href="/config/plugin">New Plugin</a></li>
+</ul>

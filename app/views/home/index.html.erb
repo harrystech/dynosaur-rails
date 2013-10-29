@@ -1,0 +1,18 @@
+<h1>Dynosaur Status - <%= @name %> </h1>
+<div>
+	<dl>
+		<dt>Current</dt><dd><%= @status["current"] %> dynos</dd>
+		<dt>Estimated Need</dt><dd><%= @status["current_estimate"] %> dynos</dd>
+		<dt>Last Changed</dt><dd><%= @status["time"] - @status["last_changed"] %> seconds ago</dd>
+	</dl>
+</div>
+
+<% for name, result in @status["results"] %>
+	<h2>Plugin: <%= name %></h2>
+	<div>
+		<dl>
+			<dt>Value</dt><dd><%= result["value"] %> <%= result["unit"] %></dd>
+			<dt>Estimate</dt><dd><%= result["estimate"] %> dynos</dd>
+		</dl>
+	</div>
+<% end %>
