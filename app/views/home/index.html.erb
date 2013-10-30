@@ -6,7 +6,8 @@
 	<dl>
 		<dt>Current</dt><dd><%= @status["current"] %> dynos</dd>
 		<dt>Estimated Need</dt><dd><%= @status["current_estimate"] %> dynos</dd>
-		<dt>Last Changed</dt><dd><%= @status["time"] - @status["last_changed"] %> seconds ago</dd>
+		<dt>Last Changed</dt><dd><%= @status["last_changed"] %>
+			(<%= @status["time"].to_i - @status["last_changed"].to_i %> seconds ago)</dd>
 	</dl>
 </div>
 
@@ -16,6 +17,8 @@
 		<dl>
 			<dt>Value</dt><dd><%= result["value"] %> <%= result["unit"] %></dd>
 			<dt>Estimate</dt><dd><%= result["estimate"] %> dynos</dd>
+			<dt>Last Retrieved</dt><dd><%= result["last_retrieved"] %>
+				(<%= @status["time"].to_i -  result["last_retrieved"].to_i %> seconds ago) </dd>
 		</dl>
 	</div>
 <% end %>

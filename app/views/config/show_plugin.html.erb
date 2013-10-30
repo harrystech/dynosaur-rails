@@ -8,28 +8,14 @@
 	</div>
 <% end %>
 
-<form action="/config/plugin" method="POST">
+<form class="plugin-config" action="/config/plugin" method="POST">
 <%= token_tag form_authenticity_token %>
 <label for="name">Plugin Name</label><%= text_field(:plugin_config, :name) %>
 <label for="plugin_type">Plugin Type</label>
 <%= select_tag("plugin_config[plugin_type]", options_for_select(@plugin_types, @plugin_config.plugin_type)) %>
+<label for="interval">Plugin Poll Interval (seconds)</label><%= text_field(:plugin_config, :interval) %>
 
-<ul>
-	<%  @plugin_config.plugin_config_items.all.each_with_index do |item, index| %>
-		<% id = "param_#{index}" %>
-		<li>
-			<label for="<%= id %>_name">Param <%= index %></label>
-			<input type="text" name="<%= id %>_name" value="<%= item.name %>"/>
-			<input type="text" name="<%= id %>_value" value="<%= item.value %>"/>
-		</li>
-	<% end %>
-
-	<% id = "param_#{@plugin_config.plugin_config_items.length}" %>
-	<li>
-		<label for="<%= id %>_name">Param <%= @plugin_config.plugin_config_items.length %></label>
-		<input type="text" name="<%= id %>_name"/>
-		<input type="text" name="<%= id %>_value" />
-	</li>
+<ul id="plugin_options">
 </ul>
 
 <%= hidden_field(:config, :id) %>
@@ -38,4 +24,47 @@
 <br>
 <input type="submit">
 </form>
+
+<script type="application/javascript">
+	var plugin_options = <%= @plugin_config_templates.to_json.html_safe %>;
+	var initial_state = <%= @plugin_config.plugin_config_items.all.to_json.html_safe %>;
+
+	function get_initial_value(param) {
+		for (var i in initial_state) {
+			var item = initial_state[i];
+			if (item.name === param) {
+				return item.value;
+			}
+		}
+		return "";
+	}
+
+	function create_config_form(plugin_type) {
+		var html = "";
+		for (var param in plugin_options[plugin_type]) {
+			var value = get_initial_value(param);
+			var options = plugin_options[plugin_type][param];
+			var input_type = options[0];
+			html += "<label for='" + param + "'>" + param + "</label>";
+			if (input_type === "text") {
+				html += "<input type='text' name='plugin_config[" + param + "]' value='" + value + "' />";
+			} else if (input_type === "textarea") {
+				var width = options[1];
+				var height = options[2];
+				var style = "width: " + width + "em; height: " + height + "em;"
+				html += "<textarea style='" + style + "' name='plugin_config[" + param + "]'>" + value + "</textarea>";
+			}
+		}
+		$("#plugin_options").html(html);
+	}
+
+	$(document).ready(function() {
+		var plugin_type = "<%= @plugin_config.plugin_type %>";
+		create_config_form(plugin_type);
+		$("#plugin_config_plugin_type").change(function(ev) {
+			var plugin_type = $(this).find(":selected").text();
+			create_config_form(plugin_type);
+		});
+	});
+</script>
 

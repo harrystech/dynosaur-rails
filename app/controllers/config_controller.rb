@@ -44,9 +44,12 @@ class ConfigController < ApplicationController
 
   def show_plugin
 
+    @plugin_config_templates = {}
+
     @plugin_types = []
     ScalerPlugin.subclasses.each { |klass|
       @plugin_types << klass.name
+      @plugin_config_templates[klass.name] = klass.get_config_template
     }
 
     name = params[:name]
@@ -67,6 +70,7 @@ class ConfigController < ApplicationController
     else
       @plugin_config = @config.plugin_configs.new
     end
+
 
   end
 
@@ -93,16 +97,12 @@ class ConfigController < ApplicationController
     end
 
     @plugin_config.plugin_type = plugin_config["plugin_type"]
+    @plugin_config.interval = plugin_config["interval"]
     @plugin_config.save!
 
-    10.times { |i|
-      if params.has_key?("param_#{i}_name")
-        item_name = params["param_#{i}_name"]
-        item_value = params["param_#{i}_value"]
-        if item_name.empty?
-          next
-        end
-        puts "Saving '#{item_name}' = '#{item_value}'"
+    plugin_config.each { |item_name, item_value|
+      unless ["plugin_type", "interval"].include?(item_name)
+        puts "Saving config: #{item_name}"
         @plugin_config.set_item(item_name, item_value)
       end
     }
