@@ -12,6 +12,7 @@ class ScalerConfig < ActiveRecord::Base
         "heroku_app_name" => self.heroku_app_name,
         "heroku_api_key" => self.heroku_api_key,
         "dry_run" => self.dry_run,
+        "stats" => self.stats,
         "interval" => self.interval,
         "blackout" => self.blackout,
       }

@@ -6,6 +6,7 @@ class CreateScalerConfigs < ActiveRecord::Migration
       t.string :heroku_app_name
       t.string :heroku_api_key
       t.boolean :dry_run
+      t.boolean :stats
       t.integer :interval
       t.integer :blackout
 

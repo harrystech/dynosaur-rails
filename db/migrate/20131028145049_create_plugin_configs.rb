@@ -4,6 +4,7 @@ class CreatePluginConfigs < ActiveRecord::Migration
       t.integer :scaler_config_id
       t.string :name
       t.string :plugin_type
+      t.integer :interval
 
       t.timestamps
     end

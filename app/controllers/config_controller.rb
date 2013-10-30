@@ -26,6 +26,7 @@ class ConfigController < ApplicationController
     @config.interval = config_params["interval"]
     @config.blackout = config_params["blackout"]
     @config.dry_run = config_params["dry_run"]
+    @config.stats = config_params["stats"]
 
 
     begin

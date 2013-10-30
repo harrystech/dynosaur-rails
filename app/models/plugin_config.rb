@@ -1,7 +1,7 @@
 class PluginConfig < ActiveRecord::Base
   belongs_to :scaler_config
   has_many :plugin_config_items
-  attr_accessible :name, :plugin_type
+  attr_accessible :name, :plugin_type, :interval
 
   validates :name, :plugin_type, :presence => true
 

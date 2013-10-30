@@ -1,5 +1,8 @@
 <h1>Dynosaur Status - <%= @name %> </h1>
 <div>
+		<% if @dry_run %>
+			<p>DRY RUN!</p>
+		<% end %>
 	<dl>
 		<dt>Current</dt><dd><%= @status["current"] %> dynos</dd>
 		<dt>Estimated Need</dt><dd><%= @status["current_estimate"] %> dynos</dd>

@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20131028145136) do
     t.integer  "scaler_config_id"
     t.string   "name"
     t.string   "plugin_type"
+    t.integer  "interval"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20131028145136) do
     t.string   "heroku_app_name"
     t.string   "heroku_api_key"
     t.boolean  "dry_run"
+    t.boolean  "stats"
     t.integer  "interval"
     t.integer  "blackout"
     t.datetime "created_at",      :null => false
