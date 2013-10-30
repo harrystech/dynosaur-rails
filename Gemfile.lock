@@ -1,5 +1,7 @@
-PATH
-  remote: ../dynosaur
+GIT
+  remote: git://github.com/harrystech/dynosaur.git
+  revision: 2981f6c9d4bf133a80819cccb70cd5b6055d9d59
+  branch: master
   specs:
     dynosaur (0.0.1)
       google-api-client (~> 0.6.4)

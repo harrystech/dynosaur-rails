@@ -28,8 +28,7 @@ group :development, :test do
   gem 'pry'
 end
 
-#gem 'dynosaur', :git => "https://github.com/harrystech/dynosaur.git"
-gem 'dynosaur', :path => "../dynosaur"
+gem 'dynosaur', :github => "harrystech/dynosaur", :branch => 'master'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
