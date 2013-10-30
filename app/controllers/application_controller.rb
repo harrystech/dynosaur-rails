@@ -1,5 +1,4 @@
 require 'bcrypt'
-require 'pry'
 
 class ApplicationController < ActionController::Base
   DEFAULT_USERNAME = "admin"
