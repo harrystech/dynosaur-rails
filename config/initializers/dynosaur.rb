@@ -2,7 +2,6 @@
 puts "Running dynosaur initializers"
 
 require "dynosaur"
-require 'pry'
 
 config = ScalerConfig.last(:order => "id asc", :limit => 1)
 
