@@ -90,6 +90,7 @@ GEM
     mime-types (1.25)
     multi_json (1.8.2)
     multipart-post (1.2.0)
+    pg (0.17.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -172,6 +173,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   dynosaur!
   jquery-rails
+  pg
   pry
   rails (= 3.2.15)
   rspec-rails
