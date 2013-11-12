@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: cea0d70f3ba2800b29a949eee75fdc7d348d5a00
+  revision: 2c8b171aa91fd76fdb231527618d6cd9dcc26f4e
   branch: master
   specs:
-    dynosaur (0.0.1)
+    dynosaur (0.0.2)
       google-api-client (~> 0.6.4)
       heroku-api
 
