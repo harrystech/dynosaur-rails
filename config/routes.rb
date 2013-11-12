@@ -1,4 +1,7 @@
 DynosaurRails::Application.routes.draw do
+
+  get "ping" => "ping#ping"
+
   post "config/submit"
   get "config" => "config#index"
   get "config/plugin/:name" => "config#show_plugin"
@@ -6,6 +9,7 @@ DynosaurRails::Application.routes.draw do
   post "config/plugin" => "config#post_plugin"
 
   get "home/index"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
