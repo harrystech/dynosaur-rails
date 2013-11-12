@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20131028145136) do
   create_table "plugin_config_items", :force => true do |t|
     t.integer  "plugin_config_id"
     t.string   "name"
-    t.string   "value"
+    t.text     "value"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

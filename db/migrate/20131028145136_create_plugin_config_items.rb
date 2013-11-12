@@ -3,7 +3,7 @@ class CreatePluginConfigItems < ActiveRecord::Migration
     create_table :plugin_config_items do |t|
       t.integer :plugin_config_id
       t.string :name
-      t.string :value
+      t.text :value
 
       t.timestamps
     end
