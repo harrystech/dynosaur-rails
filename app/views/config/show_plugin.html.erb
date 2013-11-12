@@ -62,7 +62,7 @@
 	}
 
 	$(document).ready(function() {
-		var plugin_type = "<%= @plugin_types[0] %>";
+		var plugin_type = "<%= @plugin_type %>";
 		create_config_form(plugin_type);
 		$("#plugin_config_plugin_type").change(function(ev) {
 			var plugin_type = $(this).find(":selected").text();

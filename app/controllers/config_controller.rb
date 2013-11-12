@@ -63,11 +63,13 @@ class ConfigController < ApplicationController
 
     if !name.nil?
       @plugin_config = @config.plugin_configs.where(:name => name).first
+      @plugin_type = @plugin_config.plugin_type
 
       if @plugin_config.nil?
         raise "Couldn't find plugin_config"
       end
     else
+      @plugin_type = @plugin_types[0]
       @plugin_config = @config.plugin_configs.new
     end
 
