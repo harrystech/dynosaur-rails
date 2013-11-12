@@ -16,10 +16,20 @@ class ApplicationController < ActionController::Base
       if username != expected_username
         return false
       end
-      bcyrpt_password = BCrypt::Password.new(expected_password)
-      if expected_password == password || bcyrpt_password == password
+      if expected_password == password
         @passed_auth=true
         return true
+      else
+        begin
+          bcyrpt_password = BCrypt::Password.new(expected_password)
+          if bcyrpt_password == password
+            @passed_auth=true
+            return true
+          end
+        rescue BCrypt::Errors::InvalidHash
+          puts "DYNOSAUR_PASSWORD is not a valid bcrypt hash, so that's not gonna work"
+        end
+
       end
       puts "ERROR: Failed basic auth"
       request_http_basic_authentication
