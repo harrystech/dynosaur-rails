@@ -7,8 +7,8 @@ require "dynosaur"
 begin
   config = ScalerConfig.last(:order => "id asc", :limit => 1)
 
+  Dynosaur.initialize(config.get_hash)
   if !config.nil?
-    Dynosaur.initialize(config.get_hash)
     Dynosaur.start_in_thread
   end
 rescue Exception => e
