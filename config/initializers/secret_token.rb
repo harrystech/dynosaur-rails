@@ -10,6 +10,7 @@ if !ENV.has_key?('SECRET_TOKEN')
   print "\n***********************************************************"
   print "\nWARNING: You will need to add 'SECRET_TOKEN' to your bash environment"
   print "\n\techo \"export SECRET_TOKEN=\\\"$(rake secret)\\\"\" >> ~/.bash_profile\n"
+  print "\t On heroku: heroku config:set SECRET_TOKEN=\"$(rake secret)\"\n"
   puts "\n*************************************************************\n"
 end
 

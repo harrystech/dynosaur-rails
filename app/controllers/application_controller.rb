@@ -42,6 +42,9 @@ class ApplicationController < ActionController::Base
     ip = request.headers.fetch("X-Forwarded-For", request.ip)
     if !allowed_ips.include?(ip)
       puts "ERROR: Failed IP check for #{ip}"
+      unless ENV.has_key?("DYNOSAUR_IP_WHITELIST")
+        puts "You probably need to set DYNOSAUR_IP_WHITELIST env variable"
+      end
       render :file => "public/401.html", :status => :unauthorized, layout: false
     end
   end

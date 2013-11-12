@@ -11,21 +11,36 @@ autoscaler.
 
 Add a heroku remote
 
-	git add remote heroku
+	heroku create
+	git remote -v
+    heroku addons:add heroku-postgresql
+    heroku addons:add papertrail
+
+
+Set environment variables
+
+	heroku config:set RAKE_ENV=production
+	heroku config:set RAILS_ENV=production
+	heroku config:set SECRET_TOKEN=$(rake secret)
+	heroku config:set DYNOSAUR_IP_WHITELIST=$(curl -s http://ifconfig.me)
 
 Deploy to heroku
 
     git push heroku
 
-Set environment variables
+	heroku run rake db:migrate
+
 
 	heroku ... TODO
+
+Check your logs
+
+	heroku logs -t
 
 ## Config
 
 This app requires only one environment variable (although we suggest you set up
 some authentication too, see below).
-
 
     SECRET_TOKEN=<YOUR SECRET>
 
@@ -59,6 +74,9 @@ Once up and running, you can configure your dynosaur instance (see the
 [Dynosaur Docs](http://github.com/harrystech/dynosaur) for explanation of the
 different parameters.
 
+After configuring the main Dynosaur parameters, you must restart the app before
+configuring plugins.
+
 Add a plugin (e.g. Google Analytics and set all the params required).
 
 Restart the rails app and you should see that your autoscaler is running. It
@@ -67,7 +85,7 @@ e.g. the Google Analytics website.
 
 ## Limitations
 
-1. You may need to restart the app to add or remove plugins
+1. You must restart the app after adding plugins
 1. You have to remove plugins manually from the database and restart the rails
    app.
 1. Validation of plugin config is not very forgiving and you can lose your
