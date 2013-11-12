@@ -11,14 +11,16 @@
 	</dl>
 </div>
 
-<% for name, result in @status["results"] %>
-	<h2>Plugin: <%= name %></h2>
-	<div>
-		<dl>
-			<dt>Value</dt><dd><%= result["value"] %> <%= result["unit"] %></dd>
-			<dt>Estimate</dt><dd><%= result["estimate"] %> dynos</dd>
-			<dt>Last Retrieved</dt><dd><%= result["last_retrieved"] %>
-				(<%= @status["time"].to_i -  result["last_retrieved"].to_i %> seconds ago) </dd>
-		</dl>
-	</div>
+<% if @status["results"] %>
+	<% for name, result in @status["results"] %>
+		<h2>Plugin: <%= name %></h2>
+		<div>
+			<dl>
+				<dt>Value</dt><dd><%= result["value"] %> <%= result["unit"] %></dd>
+				<dt>Estimate</dt><dd><%= result["estimate"] %> dynos</dd>
+				<dt>Last Retrieved</dt><dd><%= result["last_retrieved"] %>
+					(<%= @status["time"].to_i -  result["last_retrieved"].to_i %> seconds ago) </dd>
+			</dl>
+		</div>
+	<% end %>
 <% end %>

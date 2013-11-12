@@ -13,6 +13,9 @@
 <label for="name">Plugin Name</label><%= text_field(:plugin_config, :name) %>
 <label for="plugin_type">Plugin Type</label>
 <%= select_tag("plugin_config[plugin_type]", options_for_select(@plugin_types, @plugin_config.plugin_type)) %>
+<% if @plugin_types.empty? %>
+	<p class="note">You need to restart rails to initialize plugin types</p>
+<% end %>
 <label for="interval">Plugin Poll Interval (seconds)</label><%= text_field(:plugin_config, :interval) %>
 
 <ul id="plugin_options">

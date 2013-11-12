@@ -12,11 +12,11 @@ class ConfigController < ApplicationController
     config_params = params["config"]
 
     @config = nil
-    if config_params.has_key? "id"
+    if config_params["id"].empty?
+      @config = ScalerConfig.new
+    else
       @config = ScalerConfig.find(config_params["id"])
       puts "Updating existing config: #{@config.id}"
-    else
-      @config = ScalerConfig.new
     end
 
     @config.heroku_app_name = config_params["heroku_app_name"]
