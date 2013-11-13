@@ -1,7 +1,7 @@
 # Dynosaur-Rails
 
 This is a web admin interface and simple deploy mechanism for 
-[Dynosaur](http://github.com/harrystech/dynosaur"), a pluggable Heroku
+[Dynosaur](http://github.com/harrystech/dynosaur), a pluggable Heroku
 autoscaler. It is a rails app designed to be run on Heroku with only environment
 variables for configuration. This rails app runs the dynosaur autoscaler in a
 background thread, displays status, and allows the user to configure the
