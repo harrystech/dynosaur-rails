@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'pry'
 
 # Add this to load Capybara integration:
 #require 'capybara/rspec'
@@ -54,3 +55,32 @@ RSpec.configure do |config|
       config.order = "default"
 end
 
+def basic_auth_login
+  request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(ApplicationController::DEFAULT_USERNAME, ApplicationController::DEFAULT_PASSWORD)
+end
+
+def get_dynosaur_config(num_plugins)
+  api_key = SecureRandom.uuid
+  app_name = SecureRandom.uuid[0..12]
+  config = ScalerConfig.new
+  config.min_web_dynos = 3
+  config.max_web_dynos = 27
+  config.heroku_app_name = app_name
+  config.heroku_api_key = api_key
+  config.dry_run = true
+  config.interval = 5
+  config.blackout = 10
+  config.stathat_api_key = SecureRandom.uuid
+  config.save!
+
+  plugins = []
+  num_plugins.times { |i|
+    plugin = config.plugin_configs.new
+    plugin.name = "random_#{i}"
+    plugin.plugin_type = "RandomPlugin"
+    plugin.save!
+    plugin.set_item("seed", "1234")
+    plugins << plugin
+  }
+  return config
+end
