@@ -16,7 +16,7 @@
 <label for="max_web_dynos">Max. Web Dynos</label><%= text_field(:config, :max_web_dynos) %>
 <label for="interval">Interval</label><%= text_field(:config, :interval) %>
 <label for="blackout">Blackout</label><%= text_field(:config, :blackout) %>
-<label for="stats">Write Stats?</label><%= check_box(:config, :stats) %>
+<label for="stathat_api_key">Stathat API Key (optional)</label><%= text_field(:config, :stathat_api_key) %>
 <label for="dry_run">dry_run</label><%= check_box(:config, :dry_run) %>
 
 <%= hidden_field(:config, :id) %>

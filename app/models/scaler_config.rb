@@ -1,6 +1,6 @@
 class ScalerConfig < ActiveRecord::Base
   has_many :plugin_configs
-  attr_accessible :blackout, :dry_run, :heroku_api_key, :heroku_app_name, :interval, :max_web_dynos, :min_web_dynos
+  attr_accessible :blackout, :dry_run, :heroku_api_key, :heroku_app_name, :interval, :max_web_dynos, :min_web_dynos, :stathat_api_key
 
   validates :heroku_app_name, :heroku_api_key, :interval, :max_web_dynos, :min_web_dynos, :blackout, :presence => true
 
@@ -12,7 +12,7 @@ class ScalerConfig < ActiveRecord::Base
         "heroku_app_name" => self.heroku_app_name,
         "heroku_api_key" => self.heroku_api_key,
         "dry_run" => self.dry_run,
-        "stats" => self.stats,
+        "stathat_api_key" => self.stathat_api_key,
         "interval" => self.interval,
         "blackout" => self.blackout,
       }

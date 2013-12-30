@@ -1,5 +1,5 @@
 
-puts "Running dynosaur initializers"
+puts "Running dynosaur initializers. Env = #{Rails.env}"
 
 require "dynosaur"
 

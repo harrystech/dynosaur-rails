@@ -2,7 +2,10 @@ class ConfigController < ApplicationController
   def index
     @config = ScalerConfig.last(:order => "id asc", :limit => 1)
     if @config.nil?
+        puts "Showing config form for new config"
         @config = ScalerConfig.new
+    else
+      puts "Showing config form for scaler_config = #{@config.id}"
     end
   end
 
@@ -26,7 +29,7 @@ class ConfigController < ApplicationController
     @config.interval = config_params["interval"]
     @config.blackout = config_params["blackout"]
     @config.dry_run = config_params["dry_run"]
-    @config.stats = config_params["stats"]
+    @config.stathat_api_key = config_params["stathat_api_key"]
 
 
     begin

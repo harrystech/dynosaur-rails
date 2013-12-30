@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131028145136) do
+ActiveRecord::Schema.define(:version => 20131230220351) do
 
   create_table "plugin_config_items", :force => true do |t|
     t.integer  "plugin_config_id"
@@ -36,11 +36,11 @@ ActiveRecord::Schema.define(:version => 20131028145136) do
     t.string   "heroku_app_name"
     t.string   "heroku_api_key"
     t.boolean  "dry_run"
-    t.boolean  "stats"
     t.integer  "interval"
     t.integer  "blackout"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "stathat_api_key"
   end
 
 end

@@ -3,7 +3,7 @@ require 'bcrypt'
 class ApplicationController < ActionController::Base
   DEFAULT_USERNAME = "admin"
   DEFAULT_PASSWORD = "password"
-  DEFAULT_IP_WHITELIST = "127.0.0.1"
+  DEFAULT_IP_WHITELIST = "127.0.0.1,0.0.0.0"
 
   before_filter :ip_whitelist
   before_filter :basic_auth
@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
       expected_username = ENV.fetch("DYNOSAUR_USERNAME", DEFAULT_USERNAME)
       expected_password = ENV.fetch("DYNOSAUR_PASSWORD", DEFAULT_PASSWORD)
       if username != expected_username
+        puts "Failed username"
         return false
       end
       if expected_password == password
@@ -25,6 +26,8 @@ class ApplicationController < ActionController::Base
           if bcyrpt_password == password
             @passed_auth=true
             return true
+          else
+            puts "Failed password"
           end
         rescue BCrypt::Errors::InvalidHash
           puts "DYNOSAUR_PASSWORD is not a valid bcrypt hash, so that's not gonna work"
