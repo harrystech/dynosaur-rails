@@ -29,7 +29,8 @@ class ConfigController < ApplicationController
     @config.interval = config_params["interval"]
     @config.blackout = config_params["blackout"]
     @config.dry_run = config_params["dry_run"]
-    @config.stathat_api_key = config_params["stathat_api_key"]
+    @config.librato_api_key = config_params["librato_api_key"]
+    @config.librato_email = config_params["librato_email"]
 
 
     begin

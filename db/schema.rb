@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131230220351) do
+ActiveRecord::Schema.define(:version => 20131231212515) do
 
   create_table "plugin_config_items", :force => true do |t|
     t.integer  "plugin_config_id"
@@ -40,7 +40,8 @@ ActiveRecord::Schema.define(:version => 20131230220351) do
     t.integer  "blackout"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.string   "stathat_api_key"
+    t.string   "librato_email"
+    t.string   "librato_api_key"
   end
 
 end

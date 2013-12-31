@@ -16,7 +16,8 @@
 <label for="max_web_dynos">Max. Web Dynos</label><%= text_field(:config, :max_web_dynos) %>
 <label for="interval">Interval</label><%= text_field(:config, :interval) %>
 <label for="blackout">Blackout</label><%= text_field(:config, :blackout) %>
-<label for="stathat_api_key">Stathat API Key (optional)</label><%= text_field(:config, :stathat_api_key) %>
+<label for="librato_email">Librato Email (optional)</label><%= text_field(:config, :librato_email) %>
+<label for="librato_api_key">Librato API Key (optional)</label><%= text_field(:config, :librato_api_key) %>
 <label for="dry_run">dry_run</label><%= check_box(:config, :dry_run) %>
 
 <%= hidden_field(:config, :id) %>

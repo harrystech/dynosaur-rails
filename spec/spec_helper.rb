@@ -70,7 +70,8 @@ def get_dynosaur_config(num_plugins)
   config.dry_run = true
   config.interval = 5
   config.blackout = 10
-  config.stathat_api_key = SecureRandom.uuid
+  config.librato_api_key = SecureRandom.uuid
+  config.librato_email = SecureRandom.uuid
   config.save!
 
   plugins = []
