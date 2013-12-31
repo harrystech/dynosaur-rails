@@ -18,9 +18,11 @@ class ScalerConfig < ActiveRecord::Base
       }
     }
     plugins = []
-    self.plugin_configs.each { |plugin|
-      plugins << plugin.get_hash
-    }
+    if self.plugin_configs
+      self.plugin_configs.each { |plugin|
+        plugins << plugin.get_hash
+      }
+    end
     h["plugins"] = plugins
     return h
   end
