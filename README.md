@@ -91,3 +91,4 @@ e.g. the Google Analytics website.
 1. Validation of plugin config is not very forgiving and you can lose your
    progress.
 
+[![TravisCI](https://travis-ci.org/harrystech/dynosaur-rails.png)](https://travis-ci.org/harrystech/dynosaur-rails)
