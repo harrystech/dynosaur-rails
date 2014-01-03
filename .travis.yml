@@ -4,3 +4,5 @@ rvm:
 env: SECRET_TOKEN=12980842a1dee2aaa35246f681d85eeb98037a3ea2e691edb8cda5c9356440b0f49ff4d52237471ff49c79df4e4a6a8a87eea725a40239e39ceb07f50d159071
 before_script: bundle exec rake db:reset
 script: bundle exec rspec spec
+notifications:
+    hipchat: secure: "cVvKnySyhAuBtAqXKwxsMamfjkGe63OldAdP4eSNv6syr0BNcJirfDN6OsH1bzAbvCq/lEK1udLDzPrEsP0S51zBG2tGaeY7pXeBhHigBGFmC6wsAfMtPkDTyursm6f6Orl0LrMB4RPTNi6RFXdKDvTk430NBjh8YgKkZ7EzBtg="
