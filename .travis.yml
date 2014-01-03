@@ -6,4 +6,5 @@ before_script: bundle exec rake db:reset
 script: bundle exec rspec spec
 notifications:
     hipchat:
-        secure: "cVvKnySyhAuBtAqXKwxsMamfjkGe63OldAdP4eSNv6syr0BNcJirfDN6OsH1bzAbvCq/lEK1udLDzPrEsP0S51zBG2tGaeY7pXeBhHigBGFmC6wsAfMtPkDTyursm6f6Orl0LrMB4RPTNi6RFXdKDvTk430NBjh8YgKkZ7EzBtg="
+        rooms:
+            - secure: "cVvKnySyhAuBtAqXKwxsMamfjkGe63OldAdP4eSNv6syr0BNcJirfDN6OsH1bzAbvCq/lEK1udLDzPrEsP0S51zBG2tGaeY7pXeBhHigBGFmC6wsAfMtPkDTyursm6f6Orl0LrMB4RPTNi6RFXdKDvTk430NBjh8YgKkZ7EzBtg="
