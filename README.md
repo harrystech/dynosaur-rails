@@ -85,9 +85,9 @@ e.g. the Google Analytics website.
 
 ## Limitations
 
-1. You must restart the app after adding plugins
+1. You must restart the app after adding plugins (`heroku restart`)
 1. You have to remove plugins manually from the database and restart the rails
-   app.
+   app if you want to delete them.
 1. Validation of plugin config is not very forgiving and you can lose your
    progress.
 
