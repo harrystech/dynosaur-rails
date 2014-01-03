@@ -18,6 +18,7 @@
 /vendor/cache
 /vendor/gems
 /vendor/specifications
+/vendor/build_info
 
 /.ruby-version
 
