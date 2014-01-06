@@ -21,7 +21,8 @@ class PluginConfig < ActiveRecord::Base
   def get_hash
     h = {
       "name" => self.name,
-      "type" => self.plugin_type
+      "type" => self.plugin_type,
+      "interval" => self.interval
     }
     self.plugin_config_items.each { |item|
       h[item.name] = item.value
