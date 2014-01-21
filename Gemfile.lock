@@ -1,12 +1,13 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: 7919f8e9c9cfede7a11d793d65070240313db4c0
+  revision: 0793cbd2b0ede67336add44e9f12f677332dedca
   branch: master
   specs:
-    dynosaur (0.1.0)
+    dynosaur (0.2.0)
       google-api-client (~> 0.6.4)
       heroku-api
       librato-metrics
+      mail
 
 GEM
   remote: https://rubygems.org/
@@ -57,10 +58,10 @@ GEM
     coffee-script-source (1.6.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
-    excon (0.25.3)
+    excon (0.31.0)
     execjs (2.0.2)
     extlib (0.9.16)
-    faraday (0.8.8)
+    faraday (0.8.9)
       multipart-post (~> 1.2.0)
     google-api-client (0.6.4)
       addressable (>= 2.3.2)
@@ -72,8 +73,9 @@ GEM
       multi_json (>= 1.0.0)
       signet (~> 0.4.5)
       uuidtools (>= 2.1.0)
-    heroku-api (0.3.15)
-      excon (~> 0.25.1)
+    heroku-api (0.3.17)
+      excon (~> 0.27)
+      multi_json (~> 1.8.2)
     hike (1.2.3)
     i18n (0.6.9)
     journey (1.0.4)
@@ -81,7 +83,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
-    jwt (0.1.8)
+    jwt (0.1.11)
       multi_json (>= 1.5)
     launchy (2.4.2)
       addressable (~> 2.3)
@@ -94,7 +96,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
-    multi_json (1.8.2)
+    multi_json (1.8.4)
     multipart-post (1.2.0)
     pg (0.17.0)
     polyglot (0.3.3)
