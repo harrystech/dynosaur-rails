@@ -1,0 +1,4 @@
+# This is an example of the application.yml file
+SECRET_TOKEN: mysecrettoken
+DYNOSAUR_USERNAME: myusername
+DYNOSAUR_PASSWORD: mypassword

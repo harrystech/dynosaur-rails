@@ -63,6 +63,9 @@ GEM
     extlib (0.9.16)
     faraday (0.8.9)
       multipart-post (~> 1.2.0)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     google-api-client (0.6.4)
       addressable (>= 2.3.2)
       autoparse (>= 0.3.3)
@@ -180,6 +183,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.2.1)
   dynosaur!
+  figaro
   jquery-rails
   pg
   pry
