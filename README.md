@@ -59,28 +59,18 @@ Initialize the Heroku app:
 ```heroku addons:add papertrail```
 
 
-Set environment variables:
+Set Heroku environment variables:
 
 ```heroku config:set RAKE_ENV=production```
 ```heroku config:set RAILS_ENV=production```
-```heroku config:set SECRET_TOKEN=$(rake secret)```
+```heroku config:set SECRET_TOKEN=<YOUR SECRET>```
 ```heroku config:set DYNOSAUR_IP_WHITELIST=$(curl -s http://ifconfig.me)```
 
-Deploy to heroku
-    rake assets:precompile
+Deploy to Heroku:
 
-    git push heroku
-
-    heroku run rake db:migrate
-
-
-    heroku ... TODO
-
-Check your logs
-
-    heroku logs -t
-
-
+```rake assets:precompile```
+```git push heroku```
+```heroku run rake db:migrate```
 
 ## Usage
 
@@ -100,9 +90,9 @@ e.g. the Google Analytics website.
 ## Limitations
 
 1. You must restart the app after adding plugins (`heroku restart`)
-1. You have to remove plugins manually from the database and restart the rails
+2. You have to remove plugins manually from the database and restart the rails
    app if you want to delete them.
-1. Validation of plugin config is not very forgiving and you can lose your
+3. Validation of plugin config is not very forgiving and you can lose your
    progress.
 
 [![TravisCI](https://travis-ci.org/harrystech/dynosaur-rails.png)](https://travis-ci.org/harrystech/dynosaur-rails)
