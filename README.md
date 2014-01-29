@@ -9,24 +9,19 @@ autoscaler.
 
 ## Getting Started
 
-Fork the repo and pull it down locally
-
-run ```bundle install```
-
-```rake db:migrate```
-
-rename the ```config/application.yml.example``` file to ```config/application.yml```
+    Fork the repo and pull it down locally
+    bundle install
+    rake db:migrate
+    rename the config/application.yml.example file to config/application.yml
 
 This app only requires that the SECRET_TOKEN environment variable is set (although we suggest you set up
-some authentication too, see below).
+some authentication too, see below). To generate a secret token:
 
-To generate a secret token, run:
-
-```rake secret```
+    rake secret
 
 Then set the environment variable in the application.yml file:
 
-```SECRET_TOKEN: <YOUR SECRET>```
+    SECRET_TOKEN: <YOUR SECRET>
 
 
 ## Authentication
@@ -34,43 +29,43 @@ Then set the environment variable in the application.yml file:
 The default security is HTTP basic auth, with username 'admin' and password
 'password'. To set new credentials, set the following environment variables
 
-```DYNOSAUR_USERNAME: myuser```
-```DYNOSAUR_PASSWORD: mypass```
+    DYNOSAUR_USERNAME: myuser
+    DYNOSAUR_PASSWORD: mypass
 
 It would be better to bcrypt the password variable. We have included a script to
 generate a bcrypted password string. Run:
 
- ```bundle exec script/gen-password PASSWORD```
-```DYNOSAUR_PASSWORD: <ENCRYPTED_PASSWORD>```
+    bundle exec script/gen-password PASSWORD
+    DYNOSAUR_PASSWORD: <ENCRYPTED_PASSWORD>
 
 We also offer an IP address whitelist feature. Set the following environment
 variable as a comma-separated list of IP addresses:
 
-To find your IP address run: ```curl -s http://ifconfig.me```
-```DYNOSAUR_IP_WHITELIST: 10.0.1.2,192.168.1.34```
+    curl -s http://ifconfig.me
+    DYNOSAUR_IP_WHITELIST: '10.0.1.2,192.168.1.34'
 
 ## Deployment
 
 Initialize the Heroku app:
 
-```heroku create```
-```git remote -v```
-```heroku addons:add heroku-postgresql```
-```heroku addons:add papertrail```
+    heroku create
+    git remote -v
+    heroku addons:add heroku-postgresql
+    heroku addons:add papertrail
 
 
 Set Heroku environment variables:
 
-```heroku config:set RAKE_ENV=production```
-```heroku config:set RAILS_ENV=production```
-```heroku config:set SECRET_TOKEN=<YOUR SECRET>```
-```heroku config:set DYNOSAUR_IP_WHITELIST=$(curl -s http://ifconfig.me)```
+    heroku config:set RAKE_ENV=production
+    heroku config:set RAILS_ENV=production
+    heroku config:set SECRET_TOKEN=<YOUR SECRET>
+    heroku config:set DYNOSAUR_IP_WHITELIST=$(curl -s http://ifconfig.me)
 
 Deploy to Heroku:
 
-```rake assets:precompile```
-```git push heroku```
-```heroku run rake db:migrate```
+    git commit your files
+    git push heroku master
+    heroku run rake db:migrate
 
 ## Usage
 
