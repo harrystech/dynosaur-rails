@@ -24,3 +24,6 @@
 
 # The google API gem dumps a spec cache for each API
 analytics-v3.cache
+
+# Ignore application configuration
+/config/application.yml
