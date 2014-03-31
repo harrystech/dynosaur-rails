@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131231212515) do
+ActiveRecord::Schema.define(:version => 20140328155438) do
 
   create_table "plugin_config_items", :force => true do |t|
     t.integer  "plugin_config_id"
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(:version => 20131231212515) do
     t.string   "name"
     t.string   "plugin_type"
     t.integer  "interval"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "hysteresis_period"
   end
 
   create_table "scaler_configs", :force => true do |t|
