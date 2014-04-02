@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: 3b1991301668666007bad53be55c88f2e8582870
+  revision: d77e9bf4206b87e3a0ee846ab2b0d56304502b2d
   branch: relaxation_logic
   specs:
     dynosaur (0.3.0)
