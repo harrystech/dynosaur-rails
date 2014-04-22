@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: d77e9bf4206b87e3a0ee846ab2b0d56304502b2d
-  branch: relaxation_logic
+  revision: 3e050ed5631ca8e6435a534058b017b6fb3e741b
+  branch: master
   specs:
     dynosaur (0.3.0)
       activeresource
@@ -60,7 +60,7 @@ GEM
     coffee-script-source (1.6.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
-    excon (0.32.1)
+    excon (0.33.0)
     execjs (2.0.2)
     extlib (0.9.16)
     faraday (0.8.9)
@@ -89,7 +89,7 @@ GEM
       multi_json (>= 1.5)
     launchy (2.4.2)
       addressable (~> 2.3)
-    librato-metrics (1.3.0)
+    librato-metrics (1.3.2)
       aggregate (~> 0.2.2)
       faraday (~> 0.7)
       multi_json

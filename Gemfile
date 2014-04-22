@@ -30,7 +30,7 @@ group :development, :test do
   gem 'sqlite3'
 end
 
-gem 'dynosaur', :github => "harrystech/dynosaur", :branch => 'relaxation_logic'
+gem 'dynosaur', :github => "harrystech/dynosaur", :branch => 'master'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
