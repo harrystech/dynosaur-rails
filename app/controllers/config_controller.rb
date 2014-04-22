@@ -1,3 +1,4 @@
+require 'pry'
 class ConfigController < ApplicationController
   def index
     @config = ScalerConfig.last(:order => "id asc", :limit => 1)
@@ -27,7 +28,6 @@ class ConfigController < ApplicationController
     @config.min_web_dynos = config_params["min_web_dynos"]
     @config.max_web_dynos = config_params["max_web_dynos"]
     @config.interval = config_params["interval"]
-    @config.blackout = config_params["blackout"]
     @config.dry_run = config_params["dry_run"]
     @config.librato_api_key = config_params["librato_api_key"]
     @config.librato_email = config_params["librato_email"]
@@ -103,7 +103,8 @@ class ConfigController < ApplicationController
     end
 
     @plugin_config.plugin_type = plugin_config["plugin_type"]
-    @plugin_config.interval = plugin_config["interval"]
+    @plugin_config.interval = plugin_config["interval"].to_i
+    @plugin_config.hysteresis_period = plugin_config["hysteresis_period"].to_i
     @plugin_config.save!
 
     plugin_config.each { |item_name, item_value|

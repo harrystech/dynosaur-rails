@@ -1,7 +1,7 @@
 class PluginConfig < ActiveRecord::Base
   belongs_to :scaler_config
   has_many :plugin_config_items
-  attr_accessible :name, :plugin_type, :interval
+  attr_accessible :name, :plugin_type, :interval, :hysteresis_period
 
   validates :name, :plugin_type, :presence => true
 
@@ -22,7 +22,8 @@ class PluginConfig < ActiveRecord::Base
     h = {
       "name" => self.name,
       "type" => self.plugin_type,
-      "interval" => self.interval
+      "interval" => self.interval,
+      "hysteresis_period" => self.hysteresis_period
     }
     self.plugin_config_items.each { |item|
       h[item.name] = item.value
