@@ -1,4 +1,3 @@
-require 'pry'
 class ConfigController < ApplicationController
   def index
     @config = ScalerConfig.last(:order => "id asc", :limit => 1)
