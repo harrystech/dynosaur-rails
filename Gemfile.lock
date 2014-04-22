@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: 3e050ed5631ca8e6435a534058b017b6fb3e741b
+  revision: 993beeb36dac9fd26ebdd0f86b95952c3f18152e
   branch: master
   specs:
     dynosaur (0.3.0)
