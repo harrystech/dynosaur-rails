@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: 9365615fc3f826802e06ece205e800cdc30fbafb
+  revision: 96778133d8a45f7c171db9c9f8955ba094b36626
   branch: handle_heroku_addons
   specs:
     dynosaur (0.3.0)
