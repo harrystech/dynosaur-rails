@@ -63,8 +63,6 @@ def get_dynosaur_config(num_plugins)
   api_key = SecureRandom.uuid
   app_name = SecureRandom.uuid[0..12]
   config = ScalerConfig.new
-  config.min_web_dynos = 3
-  config.max_web_dynos = 27
   config.heroku_app_name = app_name
   config.heroku_api_key = api_key
   config.dry_run = true
@@ -76,11 +74,10 @@ def get_dynosaur_config(num_plugins)
 
   plugins = []
   num_plugins.times { |i|
-    plugin = config.plugin_configs.new
+    plugin = config.controller_plugin_configs.new
     plugin.name = "random_#{i}"
-    plugin.plugin_type = "RandomPlugin"
+    plugin.plugin_type = "Dynosaur::Controllers::DynosControllerPlugin"
     plugin.save!
-    plugin.set_item("seed", "1234")
     plugins << plugin
   }
   return config

@@ -7,10 +7,8 @@ describe ScalerConfig do
     h = config.get_hash
     puts h.inspect
 
-    h["scaler"]["min_web_dynos"].should eql 3
 
-    h["plugins"][0]["name"].should eql "random_0"
-    h["plugins"][0]["seed"].should eql "1234"
+    h["controller_plugins"][0]["name"].should eql "random_0"
 
   end
 
