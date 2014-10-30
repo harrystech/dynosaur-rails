@@ -166,6 +166,9 @@ class ConfigController < ApplicationController
       end
     }
 
+    @scaler_config = @input_plugin_config.controller_plugin_config.scaler_config
+    Dynosaur.set_config(@scaler_config.get_hash)
+
     redirect_to(:action => :show_input_plugin, :name => name)
   end
 
