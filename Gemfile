@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.0.0"
 
-gem 'rails', '3.2.18'
+gem 'rails', '3.2.19'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -30,7 +30,8 @@ group :development, :test do
   gem 'sqlite3'
 end
 
-gem 'dynosaur', :github => "harrystech/dynosaur", :branch => 'master'
+# Change that when it'll be merged
+gem 'dynosaur', :github => "harrystech/dynosaur", :branch => 'handle_heroku_addons'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
