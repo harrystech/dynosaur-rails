@@ -31,8 +31,7 @@ group :development, :test do
 end
 
 # Change that when it'll be merged
-gem 'dynosaur', :path => '../dynosaur'
-# gem 'dynosaur', :github => "harrystech/dynosaur", :branch => 'handle_heroku_addons'
+gem 'dynosaur', :github => "harrystech/dynosaur", :branch => 'handle_heroku_addons'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
