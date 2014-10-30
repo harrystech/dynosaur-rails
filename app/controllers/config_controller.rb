@@ -24,8 +24,6 @@ class ConfigController < ApplicationController
 
     @config.heroku_app_name = config_params["heroku_app_name"]
     @config.heroku_api_key = config_params["heroku_api_key"]
-    @config.min_web_dynos = config_params["min_web_dynos"]
-    @config.max_web_dynos = config_params["max_web_dynos"]
     @config.interval = config_params["interval"]
     @config.dry_run = config_params["dry_run"]
     @config.librato_api_key = config_params["librato_api_key"]
@@ -34,7 +32,7 @@ class ConfigController < ApplicationController
 
     begin
       @config.save!
-    rescue Exception => e
+    rescue ActiveRecord::RecordInvalid => e
       puts "Failed validation #{e.inspect}"
       @errors = e.record.errors
     end
@@ -45,18 +43,16 @@ class ConfigController < ApplicationController
 
   end
 
-  def show_plugin
+  def show_controller_plugin
 
     @plugin_config_templates = {}
 
-    @plugin_types = []
-    ScalerPlugin.subclasses.each { |klass|
-      @plugin_types << klass.name
-      @plugin_config_templates[klass.name] = klass.get_config_template
+    @controller_plugin_types = []
+    Dynosaur::Controllers::AbstractControllerPlugin.subclasses.each { |klass|
+      @controller_plugin_types << klass.name
     }
 
     name = params[:name]
-
 
     @config = ScalerConfig.last(:order => "id asc", :limit => 1)
 
@@ -65,21 +61,21 @@ class ConfigController < ApplicationController
     end
 
     if !name.nil?
-      @plugin_config = @config.plugin_configs.where(:name => name).first
-      @plugin_type = @plugin_config.plugin_type
+      @controller_plugin_config = @config.controller_plugin_configs.where(:name => name).first
+      @controller_plugin_type = @controller_plugin_config.plugin_type
 
-      if @plugin_config.nil?
+      if @controller_plugin_config.nil?
         raise "Couldn't find plugin_config"
       end
     else
-      @plugin_type = @plugin_types[0]
-      @plugin_config = @config.plugin_configs.new
+      @controller_plugin_type = @controller_plugin_types[0]
+      @controller_plugin_config = @config.controller_plugin_configs.new
     end
 
 
   end
 
-  def post_plugin
+  def post_controller_plugin
     config_params = params["config"]
 
     @config = nil
@@ -90,33 +86,87 @@ class ConfigController < ApplicationController
       raise "Unknown config id ##{config_params.id}"
     end
 
-    plugin_config = params["plugin_config"]
+    plugin_config = params["controller_plugin_config"]
     name = plugin_config["name"]
 
-    @plugin_config = @config.plugin_configs.where(:name => name).first
-    if @plugin_config.nil?
+    @controller_plugin_config = @config.controller_plugin_configs.where(:name => name).first
+    if @controller_plugin_config.nil?
       puts "New plugin config '#{name}'"
-      @plugin_config = @config.plugin_configs.new(:name => name)
+      @controller_plugin_config = @config.controller_plugin_configs.new(:name => name)
     else
       puts "Updating plugin config '#{name}'"
     end
 
-    @plugin_config.plugin_type = plugin_config["plugin_type"]
-    @plugin_config.interval = plugin_config["interval"].to_i
-    @plugin_config.hysteresis_period = plugin_config["hysteresis_period"].to_i
-    @plugin_config.save!
-
-    plugin_config.each { |item_name, item_value|
-      unless ["plugin_type", "interval"].include?(item_name)
-        puts "Saving config: #{item_name}"
-        @plugin_config.set_item(item_name, item_value)
-      end
-    }
+    @controller_plugin_config.plugin_type = plugin_config["plugin_type"]
+    @controller_plugin_config.min_resource = plugin_config["min_resource"]
+    @controller_plugin_config.max_resource = plugin_config["max_resource"]
+    @controller_plugin_config.save!
 
     Dynosaur.set_config(@config.get_hash)
 
 
-    redirect_to(:action => :show_plugin, :name => name)
+    redirect_to(:action => :show_controller_plugin, :name => name)
+  end
+
+  def show_input_plugin
+
+    @plugin_config_templates = {}
+    @input_plugin_types = []
+
+    Dynosaur::Inputs::AbstractInputPlugin.subclasses.each { |klass|
+      @input_plugin_types << klass.name
+      @plugin_config_templates[klass.name] = klass.get_config_template
+    }
+
+    name = params[:name]
+
+    @controller_config =  ControllerPluginConfig.find(params['controller_plugin_id'])
+
+    if @controller_config.nil?
+      raise "No scaler config yet!"
+    end
+
+    if !name.nil?
+      @input_plugin_config = @controller_config.input_plugin_configs.where(:name => name).first
+      @input_plugin_type = @input_plugin_config.plugin_type
+
+      if @input_plugin_config.nil?
+        raise "Couldn't find plugin_config"
+      end
+    else
+      @input_plugin_type = @input_plugin_types[0]
+      @input_plugin_config = @controller_config.input_plugin_configs.new
+    end
+
+  end
+
+  def post_input_plugin
+
+    plugin_config = params["input_plugin_config"]
+    @controller_config =  ControllerPluginConfig.find(params['controller_plugin_id'])
+    name = plugin_config[:name]
+
+    @input_plugin_config = @controller_config.input_plugin_configs.where(name: name).first
+    if @input_plugin_config.nil?
+      puts "New input plugin config #{name}"
+      @input_plugin_config = @controller_config.input_plugin_configs.new(name: name)
+    else
+      puts "Updating input plugin config #{name}"
+    end
+
+    @input_plugin_config.plugin_type = plugin_config['plugin_type']
+    @input_plugin_config.interval = plugin_config['interval']
+    @input_plugin_config.hysteresis_period = plugin_config['hysteresis_period']
+    @input_plugin_config.save!
+
+    plugin_config.each { |item_name, item_value|
+      if !["plugin_type", "interval", "hysteresis_period"].include?(item_name)
+        puts "Saving config: #{item_name}"
+        @input_plugin_config.set_item(item_name, item_value)
+      end
+    }
+
+    redirect_to(:action => :show_input_plugin, :name => name)
   end
 
 end

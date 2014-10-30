@@ -4,9 +4,10 @@ DynosaurRails::Application.routes.draw do
 
   post "config/submit"
   get "config" => "config#index"
-  get "config/plugin/:name" => "config#show_plugin"
-  get "config/plugin" => "config#show_plugin"
-  post "config/plugin" => "config#post_plugin"
+  get "config/controller_plugin(/:name)" => "config#show_controller_plugin"
+  post "config/controller_plugin" => "config#post_controller_plugin"
+  get "config/controller_plugin/:controller_plugin_id/input_plugin(/:name)" => "config#show_input_plugin"
+  post "config/controller_plugin/:controller_plugin_id/input_plugin" => "config#post_input_plugin"
 
   get "home/index"
 

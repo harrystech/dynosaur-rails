@@ -1,0 +1,84 @@
+<h1>Dynosaur Plugin Config: <%= @controller_plugin_config.name %></h1>
+
+<% if @errors %>
+	<div class="errors"><strong>ERROR:</strong>
+		<% for field, messages in @errors.messages %>
+			<p><%= field %> <%= messages[0] %>
+		<% end %>
+	</div>
+<% end %>
+
+<form class="plugin-config" action="/config/controller_plugin" method="POST">
+<%= token_tag form_authenticity_token %>
+<label for="name">Plugin Name</label><%= text_field(:controller_plugin_config, :name) %>
+<label for="plugin_type">Plugin Type</label>
+<%= select_tag("controller_plugin_config[plugin_type]", options_for_select(@controller_plugin_types, @controller_plugin_config.plugin_type)) %>
+<% if @controller_plugin_types.empty? %>
+	<p class="note">You need to restart rails to initialize plugin types</p>
+<% end %>
+<label for="min_resource">Min resource (optional)</label><%= text_field(:controller_plugin_config, :min_resource) %>
+<label for="max_resource">Max resource (optional)</label><%= text_field(:controller_plugin_config, :max_resource) %>
+<label for="dry_run">dry_run</label><%= check_box(:config, :dry_run) %>
+
+<ul id="plugin_options">
+</ul>
+
+<%= hidden_field(:config, :id) %>
+
+<br>
+<br>
+<input type="submit">
+</form>
+
+<% if @controller_plugin_config.persisted? %>
+  <ul>
+    <% for input_plugin in @controller_plugin_config.input_plugin_configs %>
+      <li><a href="/config/controller_plugin/<%= @controller_plugin_config.id %>/input_plugin/<%= input_plugin.name %>"><%= input_plugin.name %></a></li>
+    <% end %>
+    <li><a href="/config/controller_plugin/<%= @controller_plugin_config.id %>/input_plugin">New Input Plugin</a></li>
+  </ul>
+<% end %>
+
+<script type="application/javascript">
+	<%# var plugin_options = <%= @plugin_config_templates.to_json.html_safe %1>; %>
+	<%# var initial_state = <%= @plugin_config.plugin_config_items.all.to_json.html_safe %1>; %>
+
+	function get_initial_value(param) {
+		for (var i in initial_state) {
+			var item = initial_state[i];
+			if (item.name === param) {
+				return item.value;
+			}
+		}
+		return "";
+	}
+
+	function create_config_form(plugin_type) {
+		var html = "";
+		for (var param in plugin_options[plugin_type]) {
+			var value = get_initial_value(param);
+			var options = plugin_options[plugin_type][param];
+			var input_type = options[0];
+			html += "<label for='" + param + "'>" + param + "</label>";
+			if (input_type === "text") {
+				html += "<input type='text' name='plugin_config[" + param + "]' value='" + value + "' />";
+			} else if (input_type === "textarea") {
+				var width = options[1];
+				var height = options[2];
+				var style = "width: " + width + "em; height: " + height + "em;"
+				html += "<textarea style='" + style + "' name='plugin_config[" + param + "]'>" + value + "</textarea>";
+			}
+		}
+		$("#plugin_options").html(html);
+	}
+
+	$(document).ready(function() {
+		var plugin_type = "<%= @plugin_type %>";
+		create_config_form(plugin_type);
+		$("#plugin_config_plugin_type").change(function(ev) {
+			var plugin_type = $(this).find(":selected").text();
+			create_config_form(plugin_type);
+		});
+	});
+</script>
+

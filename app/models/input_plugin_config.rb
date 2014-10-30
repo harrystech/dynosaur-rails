@@ -1,5 +1,5 @@
-class PluginConfig < ActiveRecord::Base
-  belongs_to :scaler_config
+class InputPluginConfig < ActiveRecord::Base
+  belongs_to :controller_plugin_config
   has_many :plugin_config_items
   attr_accessible :name, :plugin_type, :interval, :hysteresis_period
 
