@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: 96778133d8a45f7c171db9c9f8955ba094b36626
+  revision: a516f189c3f05b183af0542b0f3af08da95d1659
   branch: handle_heroku_addons
   specs:
     dynosaur (0.3.0)
@@ -98,7 +98,7 @@ GEM
     json (1.8.1)
     jwt (0.1.13)
       multi_json (>= 1.5)
-    launchy (2.4.2)
+    launchy (2.4.3)
       addressable (~> 2.3)
     librato-metrics (1.4.0)
       aggregate (~> 0.2.2)
