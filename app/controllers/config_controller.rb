@@ -100,6 +100,7 @@ class ConfigController < ApplicationController
     @controller_plugin_config.plugin_type = plugin_config["plugin_type"]
     @controller_plugin_config.min_resource = plugin_config["min_resource"]
     @controller_plugin_config.max_resource = plugin_config["max_resource"]
+    @controller_plugin_config.dry_run = plugin_config["dry_run"]
     @controller_plugin_config.save!
 
     Dynosaur.set_config(@config.get_hash)
