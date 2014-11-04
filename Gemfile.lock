@@ -1,9 +1,8 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: a516f189c3f05b183af0542b0f3af08da95d1659
-  branch: handle_heroku_addons
+  revision: e9214e8b68b9fdb133b2052ca569466036b63136
   specs:
-    dynosaur (0.3.0)
+    dynosaur (0.4.0)
       activeresource
       google-api-client (~> 0.6.4)
       heroku-api
@@ -197,7 +196,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.2.1)
-  dynosaur!
+  dynosaur (= 0.4.0)!
   figaro
   jquery-rails
   pg
