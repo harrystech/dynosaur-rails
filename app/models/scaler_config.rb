@@ -1,14 +1,12 @@
 class ScalerConfig < ActiveRecord::Base
-  has_many :plugin_configs
-  attr_accessible :dry_run, :heroku_api_key, :heroku_app_name, :interval, :max_web_dynos, :min_web_dynos, :librato_email, :librato_api_key
+  has_many :controller_plugin_configs
+  attr_accessible :dry_run, :heroku_api_key, :heroku_app_name, :interval, :librato_email, :librato_api_key
 
-  validates :heroku_app_name, :heroku_api_key, :interval, :max_web_dynos, :min_web_dynos, :presence => true
+  validates :heroku_app_name, :heroku_api_key, :interval, :presence => true
 
   def get_hash
     h = {
       "scaler" => {
-        "min_web_dynos" => self.min_web_dynos,
-        "max_web_dynos" => self.max_web_dynos,
         "heroku_app_name" => self.heroku_app_name,
         "heroku_api_key" => self.heroku_api_key,
         "dry_run" => self.dry_run,
@@ -17,13 +15,13 @@ class ScalerConfig < ActiveRecord::Base
         "interval" => self.interval,
       }
     }
-    plugins = []
-    if self.plugin_configs
-      self.plugin_configs.each { |plugin|
-        plugins << plugin.get_hash
+    controller_plugins = []
+    if self.controller_plugin_configs
+      self.controller_plugin_configs.each { |plugin|
+        controller_plugins << plugin.get_hash
       }
     end
-    h["plugins"] = plugins
+    h["controller_plugins"] = controller_plugins
     return h
   end
 end

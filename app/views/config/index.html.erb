@@ -12,8 +12,6 @@
 <%= token_tag form_authenticity_token %>
 <label for="heroku_app_name">Heroku App Name</label><%= text_field(:config, :heroku_app_name) %>
 <label for="heroku_api_key">Heroku Api Key</label><%= text_field(:config, :heroku_api_key) %>
-<label for="min_web_dynos">Min. Web Dynos</label><%= text_field(:config, :min_web_dynos) %>
-<label for="max_web_dynos">Max. Web Dynos</label><%= text_field(:config, :max_web_dynos) %>
 <label for="interval">Interval</label><%= text_field(:config, :interval) %>
 <label for="librato_email">Librato Email (optional)</label><%= text_field(:config, :librato_email) %>
 <label for="librato_api_key">Librato API Key (optional)</label><%= text_field(:config, :librato_api_key) %>
@@ -27,8 +25,8 @@
 </form>
 
 <ul>
-	<% for plugin in @config.plugin_configs %>
-		<li><a href="/config/plugin/<%= plugin.name %>"><%= plugin.name %></a></li>
+	<% for plugin in @config.controller_plugin_configs %>
+		<li><a href="/config/controller_plugin/<%= plugin.name %>"><%= plugin.name %></a></li>
 	<% end %>
-	<li><a href="/config/plugin">New Plugin</a></li>
+	<li><a href="/config/controller_plugin">New Plugin</a></li>
 </ul>

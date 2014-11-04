@@ -11,29 +11,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140328155438) do
+ActiveRecord::Schema.define(:version => 20141030203745) do
 
-  create_table "plugin_config_items", :force => true do |t|
-    t.integer  "plugin_config_id"
-    t.string   "name"
-    t.text     "value"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  create_table "plugin_configs", :force => true do |t|
+  create_table "controller_plugin_configs", :force => true do |t|
     t.integer  "scaler_config_id"
     t.string   "name"
     t.string   "plugin_type"
+    t.text     "value"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "min_resource"
+    t.string   "max_resource"
+    t.boolean  "dry_run",          :default => false
+  end
+
+  create_table "input_plugin_configs", :force => true do |t|
+    t.string   "name"
+    t.string   "plugin_type"
     t.integer  "interval"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "hysteresis_period"
+    t.integer  "controller_plugin_config_id"
+  end
+
+  create_table "plugin_config_items", :force => true do |t|
+    t.string   "name"
+    t.text     "value"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.integer  "input_plugin_config_id"
   end
 
   create_table "scaler_configs", :force => true do |t|
-    t.integer  "min_web_dynos"
-    t.integer  "max_web_dynos"
     t.string   "heroku_app_name"
     t.string   "heroku_api_key"
     t.boolean  "dry_run"
