@@ -11,6 +11,7 @@ class ControllerPluginConfig < ActiveRecord::Base
       "type" => self.plugin_type,
       "min_resource" => self.min_resource,
       "max_resource" => self.max_resource,
+      "dry_run" => self.dry_run,
     }
     input_plugins = []
     if self.input_plugin_configs
