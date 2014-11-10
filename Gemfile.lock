@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: e9214e8b68b9fdb133b2052ca569466036b63136
+  revision: 2c4db186d36f3d26c19d1dfed6ce44de493faf68
   specs:
-    dynosaur (0.4.0)
+    dynosaur (0.4.1)
       activeresource
       google-api-client (~> 0.6.4)
       heroku-api
@@ -61,7 +61,7 @@ GEM
     coffee-script-source (1.6.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
-    excon (0.40.0)
+    excon (0.41.0)
     execjs (2.0.2)
     extlib (0.9.16)
     faraday (0.8.9)
@@ -99,7 +99,7 @@ GEM
       multi_json (>= 1.5)
     launchy (2.4.3)
       addressable (~> 2.3)
-    librato-metrics (1.4.0)
+    librato-metrics (1.5.0)
       aggregate (~> 0.2.2)
       faraday (~> 0.7)
       multi_json
@@ -196,7 +196,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.2.1)
-  dynosaur (= 0.4.0)!
+  dynosaur (= 0.4.1)!
   figaro
   jquery-rails
   pg
