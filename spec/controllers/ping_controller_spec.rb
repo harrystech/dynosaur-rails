@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe PingController do
-
+  before(:all) do
+    config = get_dynosaur_config(1)
+  end
   describe "GET 'ping'" do
     it "returns http success" do
       get 'ping'
