@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe ConfigController do
+  before(:all) do
+    config = get_dynosaur_config(1)
+  end
   before do
     @config = get_dynosaur_config(2)
     basic_auth_login

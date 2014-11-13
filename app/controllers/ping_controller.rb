@@ -5,19 +5,21 @@ class PingController < ApplicationController
 
     @status = Dynosaur.get_status
     bad_plugins = []
-    if !@status["results"].nil?
-      @status["results"].each { |name, result|
-        if result["health"] != "OK"
-          bad_plugins << name
-        end
+    if !@status["controller_status"].nil?
+      @status["controller_status"].each { |controller_status|
+        controller_status['results'].each { |name, result|
+          if result["health"] != "OK"
+            bad_plugins << name
+          end
+         }
       }
       puts @status.inspect
     end
 
     if bad_plugins.empty?
-      render :text => "OK\n"
+      render :text => "OK\n", status: 200
     else
-      render :text => "BAD: #{bad_plugins}"
+      render :text => "BAD: #{bad_plugins}", status: 500
     end
   end
 
