@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: 5aac272b692d94fe23b9490223d36bc29a576258
+  revision: 8da6e12591648d936371290fa1665984d84a86f9
   specs:
-    dynosaur (0.4.2)
+    dynosaur (0.5.0)
       activeresource
       google-api-client (~> 0.6.4)
       heroku-api
@@ -42,7 +42,7 @@ GEM
     activesupport (3.2.19)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
-    addressable (2.3.6)
+    addressable (2.3.8)
     aggregate (0.2.2)
     arel (3.0.3)
     autoparse (0.3.3)
@@ -61,7 +61,7 @@ GEM
     coffee-script-source (1.6.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
-    excon (0.41.0)
+    excon (0.45.3)
     execjs (2.0.2)
     extlib (0.9.16)
     faraday (0.8.9)
@@ -79,17 +79,17 @@ GEM
       multi_json (>= 1.0.0)
       signet (~> 0.4.5)
       uuidtools (>= 2.1.0)
-    heroics (0.0.12)
+    heroics (0.0.14)
       erubis (~> 2.7.0)
       excon
       moneta
       multi_json (>= 1.9.2)
       netrc
-    heroku-api (0.3.19)
-      excon (~> 0.38)
+    heroku-api (0.3.23)
+      excon (~> 0.44)
       multi_json (~> 1.8)
     hike (1.2.3)
-    i18n (0.6.11)
+    i18n (0.7.0)
     journey (1.0.4)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
@@ -109,9 +109,9 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     moneta (0.8.0)
-    multi_json (1.10.1)
+    multi_json (1.11.0)
     multipart-post (1.2.0)
-    netrc (0.8.0)
+    netrc (0.10.3)
     newrelic_api (1.2.4)
     pg (0.17.0)
     platform-api (0.2.0)
@@ -196,7 +196,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.2.1)
-  dynosaur (= 0.4.2)!
+  dynosaur (= 0.5.0)!
   figaro
   jquery-rails
   pg
