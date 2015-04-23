@@ -31,7 +31,7 @@ group :development, :test do
 end
 
 # Change that when it'll be merged
-gem 'dynosaur', '0.5.0', :github => "harrystech/dynosaur"
+gem 'dynosaur', '0.5.1', :github => "harrystech/dynosaur"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
