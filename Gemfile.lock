@@ -1,8 +1,9 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: 9603566ea2fea6e7b989f7a7289ed0398a8e5430
+  revision: 015b9b9ad9f16c5403f57032dc62945b854b2f82
+  branch: health_reporting
   specs:
-    dynosaur (0.5.1)
+    dynosaur (0.5.2)
       activeresource
       google-api-client (~> 0.6.4)
       heroku-api
@@ -201,7 +202,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.2.1)
-  dynosaur (= 0.5.1)!
+  dynosaur (= 0.5.2)!
   figaro
   jquery-rails
   pg
