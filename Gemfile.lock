@@ -1,7 +1,6 @@
 GIT
   remote: git://github.com/harrystech/dynosaur.git
-  revision: 015b9b9ad9f16c5403f57032dc62945b854b2f82
-  branch: health_reporting
+  revision: a5c65caf4712476dab45bd61d5fcc60f81cebae6
   specs:
     dynosaur (0.5.2)
       activeresource
