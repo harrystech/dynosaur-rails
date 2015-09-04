@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ConfigController, type: :controller do
+describe ConfigController do
   before(:all) do
     config = get_dynosaur_config(1)
   end
@@ -19,7 +19,6 @@ describe ConfigController, type: :controller do
   describe "POST 'submit'" do
     it "returns http success" do
       pending
-      fail
     end
   end
 

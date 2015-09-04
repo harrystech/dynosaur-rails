@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.0.0"
 
-gem 'rails', '3.2.22'
+gem 'rails', '3.2.19'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -31,7 +31,7 @@ group :development, :test do
 end
 
 # Change that when it'll be merged
-gem 'dynosaur', '0.5.2', :github => "harrystech/dynosaur"
+gem 'dynosaur', '0.5.1', :github => "harrystech/dynosaur"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

@@ -8,7 +8,7 @@ begin
   config = ScalerConfig.last(:order => "id asc", :limit => 1)
 
   Dynosaur.initialize(config.get_hash)
-  if !config.nil? && !defined?(Rails::Console) && !Rails.env.test?
+  if !config.nil? && !defined?(Rails::Console)
     Dynosaur.start_in_thread
   end
 rescue Exception => e

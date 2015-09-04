@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PingController, type: :controller do
+describe PingController do
   before(:all) do
     config = get_dynosaur_config(1)
     Dynosaur.initialize(config.get_hash)
@@ -30,7 +30,6 @@ describe PingController, type: :controller do
                 "current"=>3,
                 "current_estimate"=>3,
                 "last_changed"=> 5.minutes.ago,
-                "last_error" => nil,
                 "results"=> {
                   "ga"=> {
                     "estimate"=>3,
@@ -50,69 +49,6 @@ describe PingController, type: :controller do
         response.should be_error
       end
     end
-    context 'with last_error set' do
-      before do
-        Dynosaur.stub(:get_status).and_return(
-          {
-            "stopped"=>false,
-            "controller_status"=> [
-              {
-                "time"=>5.minutes.ago,
-                "name"=>"dynos",
-                "current"=>3,
-                "current_estimate"=>3,
-                "last_changed"=> 5.minutes.ago,
-                "last_error" => 3.minutes.ago,
-                "results"=> {
-                  "ga"=> {
-                    "estimate"=>3,
-                    "value"=>400,
-                    "unit"=>"active users",
-                    "last_retrieved"=> 1.minutes.ago,
-                    "health"=>"OK"
-                  }
-                }
-              }
-            ]
-          }
-        )
-      end
-      it "returns a 500" do
-        get 'ping'
-        response.should be_error
-      end
-    end
-    context 'with last_error set but old' do
-      before do
-        Dynosaur.stub(:get_status).and_return(
-          {
-            "stopped"=>false,
-            "controller_status"=> [
-              {
-                "time"=>5.minutes.ago,
-                "name"=>"dynos",
-                "current"=>3,
-                "current_estimate"=>3,
-                "last_changed"=> 5.minutes.ago,
-                "last_error" => 10.minutes.ago,
-                "results"=> {
-                  "ga"=> {
-                    "estimate"=>3,
-                    "value"=>400,
-                    "unit"=>"active users",
-                    "last_retrieved"=> 1.minutes.ago,
-                    "health"=>"OK"
-                  }
-                }
-              }
-            ]
-          }
-        )
-      end
-      it "returns a 200" do
-        get 'ping'
-        response.should be_success
-      end
-    end
   end
+
 end
