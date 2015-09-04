@@ -1,11 +1,26 @@
 # Dynosaur-Rails
 
-This is a web admin interface and simple deploy mechanism for 
+This is a web admin interface and simple deploy mechanism for
 [Dynosaur](http://github.com/harrystech/dynosaur), a pluggable Heroku
 autoscaler. It is a rails app designed to be run on Heroku with only environment
 variables for configuration. This rails app runs the dynosaur autoscaler in a
 background thread, displays status, and allows the user to configure the
 autoscaler.
+
+## DEPRECATION WARNING!
+
+**We (Harry's) have decided to deprecate dynosaur-rails and turn dynosaur into
+a headless console app configured with YAML file. We just found it hard to
+maintain the web app, had let the
+front page reporting/status feature stay undeveloped for a year or so, and
+generally feel it adds little value.**
+
+**Dynosaur itself is a critical piece of our infrastructure and we intend to
+maintain it for the foreseeable future. There is nothing (as far as we know)
+stopping you from continuing to use Dynosaur Rails with the corresponding
+Dynosaur v0.5.1.**
+
+Having said that, here's the documentation for dynosaur-rails:
 
 ## Getting Started
 
