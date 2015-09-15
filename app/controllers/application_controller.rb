@@ -15,16 +15,14 @@ class ApplicationController < ActionController::Base
       expected_password = ENV.fetch("DYNOSAUR_PASSWORD", DEFAULT_PASSWORD)
       if username != expected_username
         puts "Failed username"
-        return false
+        return request_http_basic_authentication
       end
       if expected_password == password
-        @passed_auth=true
         return true
       else
         begin
           bcyrpt_password = BCrypt::Password.new(expected_password)
           if bcyrpt_password == password
-            @passed_auth=true
             return true
           else
             puts "Failed password"
@@ -35,8 +33,7 @@ class ApplicationController < ActionController::Base
 
       end
       puts "ERROR: Failed basic auth"
-      request_http_basic_authentication
-      return false
+      return request_http_basic_authentication
     end
   end
 
